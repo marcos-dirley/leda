@@ -1,5 +1,8 @@
 package orderStatistic;
 
+import java.beans.Transient;
+import java.lang.reflect.Array;
+
 /**
  * Uma implementacao da interface KLargest que usa estatisticas de ordem para 
  * retornar um array com os k maiores elementos de um conjunto de dados/array.
@@ -29,9 +32,16 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 
 	@Override
 	public T[] getKLargest(T[] array, int k) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
-		//este metodo deve obrigatoriamente usar o orderStatistics abaixo.
+        if (array.length < k || k < 1) {
+            return (T[]) new Object[0];
+        }
+
+        T[] resultado = (T[]) new Object[k];
+        for (int i = 1; i <= k; i++) {
+            resultado[i - 1] = orderStatistics(array, i); 
+        }
+
+        return resultado;
 	}
 
 	/**
@@ -46,7 +56,28 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 	 * @return
 	 */
 	public T orderStatistics(T[] array, int k){
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");		
+        T maior = array[0];
+        T maiorTemporario = array[0];
+
+        for (int i = 1; i < array.length; i++) {
+            if (array[i].compareTo(maior) > 0) maior = array[i];
+        }
+        k--;
+
+        while (k-- > 0) {
+            int i = 0;
+            while (array[i].compareTo(maior) >= 0) {
+                i++;
+                if (i >= array.length) return maior;
+            }
+            for (; i < array.length; i++) {
+                if (array[i].compareTo(maiorTemporario) > 0
+                    && array[i].compareTo(maior) < 0) 
+                    maiorTemporario = array[i];
+            }
+            maior = maiorTemporario;
+        }
+
+        return maior;
 	}
 }
