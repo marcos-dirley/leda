@@ -25,7 +25,7 @@ public class FloorBinarySearchImpl implements Floor {
 
         int meio = (left + right) / 2;
         if (array[meio] == x) return x;
-        if(array[meio] > x) return floorBinarySearch(array, left, meio - 1, x);
+        if(array[meio] > x) return floorBinarySearch(array, left, meio - 2, x);
         
         floor = floorBinarySearch(array, meio + 1, right, x);
         if (floor == null) floor = array[meio];

@@ -1,8 +1,5 @@
 package orderStatistic;
 
-import java.beans.Transient;
-import java.lang.reflect.Array;
-
 /**
  * Uma implementacao da interface KLargest que usa estatisticas de ordem para 
  * retornar um array com os k maiores elementos de um conjunto de dados/array.
