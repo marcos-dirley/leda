@@ -1,5 +1,7 @@
 package orderStatistic;
 
+import util.Util;
+
 /**
  * Uma implementacao da interface KLargest que usa estatisticas de ordem para 
  * retornar um array com os k maiores elementos de um conjunto de dados/array.
@@ -29,15 +31,13 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 
 	@Override
 	public T[] getKLargest(T[] array, int k) {
-        if (array.length < k || k < 1) {
-            return (T[]) new Object[0];
-        }
+        if (k > array.length || k < 1) return (T[]) new Object[0]; 
 
+        quicksort(array, 0, array.length - 1);
         T[] resultado = (T[]) new Object[k];
-        for (int i = 1; i <= k; i++) {
-            resultado[i - 1] = orderStatistics(array, i); 
+        for (int i = 0; i < k; i++) {
+            resultado[i] = orderStatistics(array, k - i); 
         }
-
         return resultado;
 	}
 
@@ -53,28 +53,27 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 	 * @return
 	 */
 	public T orderStatistics(T[] array, int k){
-        T maior = array[0];
-        T maiorTemporario = array[0];
+        return array[array.length - k];
+   	}
 
-        for (int i = 1; i < array.length; i++) {
-            if (array[i].compareTo(maior) > 0) maior = array[i];
+    public void quicksort(T[] a, int l, int r) {
+        if (l < r) {
+            int pivot = partition(a, l, r);
+            quicksort(a, pivot + 1, r);
+            quicksort(a, l, pivot - 1);
         }
-        k--;
+    }
 
-        while (k-- > 0) {
-            int i = 0;
-            while (array[i].compareTo(maior) >= 0) {
+    public int partition(T[] a, int l, int r) {
+        T pivot = a[l];
+        int i = l;
+        for (int j = l + 1; j <= r; j++) {
+            if (pivot.compareTo(a[j]) >= 0) {
                 i++;
-                if (i >= array.length) return maior;
+                Util.swap(a, j, i);
             }
-            for (; i < array.length; i++) {
-                if (array[i].compareTo(maiorTemporario) > 0
-                    && array[i].compareTo(maior) < 0) 
-                    maiorTemporario = array[i];
-            }
-            maior = maiorTemporario;
         }
-
-        return maior;
-	}
+        Util.swap(a, l, i);
+        return i;
+    }
 }
