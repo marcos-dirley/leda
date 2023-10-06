@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-10-03T00:39:18.952-0300</date>
+  <logger>MARCOS DIRLEY LIMA DA SILVA</logger>
+  <level>FINE</level>
+  <message>File 122111000-MARCOS DIRLEY LIMA DA SILVA.zip was received. It was sent by MARCOS DIRLEY LIMA DA SILVA from IP 192.168.0.85 at 03-10-2023 00*39*18</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-10-03T00:42:51.528-0300</date>
+  <logger>MARCOS DIRLEY LIMA DA SILVA</logger>
+  <level>FINE</level>
+  <message>File 122111000-MARCOS DIRLEY LIMA DA SILVA.zip was received. It was sent by MARCOS DIRLEY LIMA DA SILVA from IP 192.168.0.85 at 03-10-2023 00*42*51</message>
+</record>
